@@ -125,7 +125,7 @@
             <div :class="scrolled ? 'max-w-[800px] bg-slate-custom/70 backdrop-blur-2xl translate-y-[10px] border-white/10' : 'max-w-[1280px] bg-white/5 backdrop-blur-md border-white/5'"
                  class="flex items-center justify-between px-6 py-3 md:px-8 md:py-4 rounded-full pointer-events-auto w-full shadow-2xl transition-all duration-500 border">
                 <a href="#" class="flex items-center gap-3">
-                    <div class="w-7 h-7 md:w-8 md:h-8 bg-white rounded-full flex items-center justify-center font-mono font-bold text-navy text-xs md:text-sm">L</div>
+                    <div class="w-7 h-7 md:w-8 md:h-8 bg-white rounded-full flex items-center justify-center font-mono font-bold text-navy text-xs md:text-sm"><img src="Logo.png" alt="LogiQ Studio Logo" style="border-radius: 19px;"></div>
                     <span class="font-medium tracking-widest text-xs md:text-sm uppercase">LOGIQ STUDIO</span>
                 </a>
 
@@ -136,9 +136,46 @@
                     <button class="bg-white text-navy font-medium px-8 py-2.5 rounded-full text-[10px] tracking-[0.2em] uppercase hover:bg-icy transition-all">START_PROJECT</button>
                 </div>
 
-                <button class="md:hidden text-white"><i data-lucide="menu" class="w-5 h-5"></i></button>
+                <button @click="mobileMenuOpen = true" class="md:hidden text-white transition-transform duration-300 hover:scale-110 active:scale-95">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
             </div>
         </nav>
+        
+        <!-- Mobile Menu Overlay -->
+        <template x-teleport="body" >
+            <div x-show="mobileMenuOpen" style="border-radius: 45px;" 
+                 x-transition:enter="transition ease-out duration-500"
+                 x-transition:enter-start="opacity-0 -translate-y-full"
+                 x-transition:enter-end="opacity-100 translate-y-0 shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
+                 x-transition:leave="transition ease-in duration-400"
+                 x-transition:leave-start="opacity-100 translate-y-0"
+                 x-transition:leave-end="opacity-0 -translate-y-full"
+                 @click.away="mobileMenuOpen = false"
+                 class="fixed top-0 left-0 right-0 z-[60] bg-slate-custom/95 backdrop-blur-3xl md:hidden border-b border-white/10 flex flex-col items-center justify-center h-[115px] px-6">
+                
+                <div class="flex items-center justify-between w-full mb-4">
+                    <a href="#" class="flex items-center gap-2">
+                        <div class="w-6 h-6 bg-white rounded-full flex items-center justify-center font-mono font-bold text-navy text-[10px]">L</div>
+                        <span class="font-medium tracking-widest text-[10px] uppercase">LOGIQ STUDIO</span>
+                    </a>
+                    <button @click="mobileMenuOpen = false" class="text-white/40 hover:text-white transition-colors">
+                        <i data-lucide="x" class="w-5 h-5"></i>
+                    </button>
+                </div>
+                
+                <div class="flex items-center justify-center gap-6 w-full">
+                    <a href="#services" @click="mobileMenuOpen = false" 
+                       class="font-mono text-[9px] tracking-[0.2em] text-white/50 hover:text-icy hover:scale-110 active:scale-95 transition-all duration-300">SERVICES</a>
+                    <a href="#portfolio" @click="mobileMenuOpen = false" 
+                       class="font-mono text-[9px] tracking-[0.2em] text-white/50 hover:text-icy hover:scale-110 active:scale-95 transition-all duration-300">PORTFOLIO</a>
+                    <a href="#contact" @click="mobileMenuOpen = false" 
+                       class="font-mono text-[9px] tracking-[0.2em] text-white/50 hover:text-icy hover:scale-110 active:scale-95 transition-all duration-300">CONTACT</a>
+                    <button @click="mobileMenuOpen = false" 
+                            class="bg-white text-navy font-bold px-4 py-2 rounded-full text-[8px] tracking-[0.2em] uppercase hover:bg-icy hover:scale-105 active:scale-95 transition-all duration-300">START_PROJ</button>
+                </div>
+            </div>
+        </template>
 
         <!-- Hero -->
         <section class="relative min-h-screen flex flex-col items-center justify-center pt-32 pb-16 px-6 grid-lines overflow-hidden">
@@ -307,7 +344,7 @@
                                 <div class="w-14 h-14 glass-premium rounded-2xl flex items-center justify-center text-white/60"><i data-lucide="send" class="w-6 h-6 stroke-[1.5]"></i></div>
                                 <div>
                                     <p class="font-mono text-[9px] text-white/30 uppercase tracking-[0.2em] mb-1">Email_Protocol</p>
-                                    <p class="font-light tracking-wide">hello@logiq.studio</p>
+                                    <p class="font-light tracking-wide" href="mailto:logiq.studio@gmail.com">logiq.studio@gmail.com</p>
                                 </div>
                             </div>
                         </div>
@@ -364,15 +401,15 @@
         <footer class="py-16 px-6 md:px-20 border-t border-white/5">
             <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
                 <div class="flex items-center gap-3">
-                    <div class="w-8 h-8 bg-white rounded-full flex items-center justify-center font-mono font-bold text-navy">L</div>
+                    <div class="w-8 h-8 bg-white rounded-full flex items-center justify-center font-mono font-bold text-navy"><img src="Logo.png" alt="LogiQ Studio Logo" style="border-radius: 19px;"></div>
                     <span class="font-medium tracking-widest uppercase">LOGIQ STUDIO</span>
                 </div>
                 <div class="flex gap-8 font-mono text-[10px] tracking-[0.2em] text-white/40">
-                    <a href="#" class="hover:text-icy transition-colors">TWITTER</a>
-                    <a href="#" class="hover:text-icy transition-colors">GITHUB</a>
-                    <a href="#" class="hover:text-icy transition-colors">LINKEDIN</a>
+                    <a href="#" class="hover:text-icy transition-colors" target="_blank">INSTAGRAM</a>
+                    <a href="#" class="hover:text-icy transition-colors" target="_blank">GITHUB</a>
+                    <a href="https://www.linkedin.com/company/logiqstudio" target="_blank" class="hover:text-icy transition-colors">LINKEDIN</a>
                 </div>
-                <p class="font-mono text-[10px] text-white/20 uppercase tracking-widest">©2026_LOGIQ_INTL</p>
+                <p class="font-mono text-[10px] text-white/20 uppercase tracking-widest">©2025_LOGIQ_INTL</p>
             </div>
         </footer>
     </main>
@@ -381,13 +418,15 @@
         function appState() {
             return {
                 booted: false,
+                mobileMenuOpen: false,
                 lines: [],
                 bootLines: [
                     "INITIALIZING LOGIQ_OS v2.4.1...",
                     "LOADING NEURAL ASSETS... [OK]",
                     "ESTABLISHING SECURE CONNECTION... [OK]",
                     "CALIBRATING UI PHYSICS... [OK]",
-                    "SYSTEM READY."
+                    "SYSTEM READY.",
+                    "Loading..."
                 ],
                 selectedService: null,
                 services: [
@@ -428,6 +467,12 @@
                                 this.formData = { name: '', email: '', brief: '' };
                                 this.$nextTick(() => lucide.createIcons());
                             }, 1500);
+                        }
+                    });
+
+                    this.$watch('mobileMenuOpen', value => {
+                        if (value) {
+                            this.$nextTick(() => lucide.createIcons());
                         }
                     });
                 },
