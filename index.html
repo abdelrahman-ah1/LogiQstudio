@@ -461,12 +461,27 @@
                         async submitForm() {
                             if (!this.validate()) return;
                             this.status = 'submitting';
-                            // Simulate submission
-                            setTimeout(() => {
-                                this.status = 'success';
-                                this.formData = { name: '', email: '', brief: '' };
-                                this.$nextTick(() => lucide.createIcons());
-                            }, 1500);
+                            
+                            try {
+                                const response = await fetch('https://formspree.io/f/mqegaryy', {
+                                    method: 'POST',
+                                    headers: { 'Content-Type': 'application/json' },
+                                    body: JSON.stringify(this.formData)
+                                });
+                                
+                                if (response.ok) {
+                                    this.status = 'success';
+                                    this.formData = { name: '', email: '', brief: '' };
+                                    this.$nextTick(() => lucide.createIcons());
+                                } else {
+                                    const data = await response.json();
+                                    alert(data.error || '> ERR_FATAL: TRANSMISSION_FAILED');
+                                    this.status = 'idle';
+                                }
+                            } catch (error) {
+                                alert('> ERR_NET: CONNECTION_INTERRUPTED');
+                                this.status = 'idle';
+                            }
                         }
                     });
 
