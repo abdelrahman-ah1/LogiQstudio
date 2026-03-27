@@ -190,7 +190,7 @@
                         <span class="font-mono text-icy text-xs tracking-[0.3em] uppercase mb-4 block">Capabilities_Matrix</span>
                         <h2 class="text-4xl md:text-7xl font-light tracking-tighter leading-tight flex flex-col">
                             <span class="text-white">PRECISION</span>
-                            <span class="text-white/30">ENGINEERING</span>
+                            <span class="text-white/70">ENGINEERING</span>
                         </h2>
                     </div>
                     <p class="text-white/40 max-w-sm font-mono text-xs leading-relaxed tracking-wide">[LOG] Our service modules are designed to integrate seamlessly into existing enterprise frameworks.</p>
@@ -291,7 +291,7 @@
                         <span class="font-mono text-icy text-xs tracking-[0.3em] uppercase mb-4 block">Communication_Channel</span>
                         <h2 class="text-4xl md:text-7xl font-light tracking-tighter mb-8 flex flex-col">
                             <span class="text-white">INITIALIZE</span>
-                            <span class="text-white/30">CONTACT</span>
+                            <span class="text-white/70">CONTACT</span>
                         </h2>
                         <p class="text-white/40 text-lg mb-16 max-w-md font-light leading-relaxed">Ready to engineer your next logical breakthrough? Our team is standing by to process your requirements.</p>
 
@@ -392,11 +392,11 @@
                 selectedService: null,
                 services: [
                     { id: "01", title: "Custom Software", icon: "code-2", desc: "Bespoke solutions engineered for high-performance industrial applications.", longDesc: "We architect and build custom software systems from the ground up. Our approach focuses on creating resilient, scalable, and highly optimized applications.", features: ["Microservices", "High-Throughput", "Legacy Integration", "Real-time Pipelines"] },
-                    { id: "02", title: "Cloud Infrastructure", icon: "cpu", desc: "Scalable, secure, and resilient cloud architecture for global deployments.", longDesc: "Our cloud engineering team designs infrastructure that scales elastically across AWS, Google Cloud, and Azure.", features: ["Terraform", "Kubernetes", "Multi-Region", "Zero-Trust Security"] },
-                    { id: "03", title: "Mobile Ecosystems", icon: "smartphone", desc: "Native and cross-platform mobile experiences with zero-latency logic.", longDesc: "We build mobile applications that feel native, fast, and intuitive by optimizing rendering pipelines.", features: ["React Native", "Swift", "Offline-First", "Automated Delivery"] },
-                    { id: "04", title: "Web Platforms", icon: "globe", desc: "High-fidelity web interfaces that balance technical depth with UX.", longDesc: "Our web platforms are built for speed and accessibility using edge computing and SSR.", features: ["Next.js", "Edge Computing", "WebGL", "WebAssembly"] },
-                    { id: "05", title: "AI Integration", icon: "zap", desc: "Leveraging neural networks to automate complex logical workflows.", longDesc: "We integrate state-of-the-art machine learning models into your existing workflows.", features: ["LLM Orchestration", "Computer Vision", "Predictive Modeling"] },
-                    { id: "06", title: "System Architecture", icon: "layers", desc: "Architectural blueprints for complex multi-tier software systems.", longDesc: "Before writing a single line of code, we design the blueprint to handle future scale.", features: ["System Design", "Database Modeling", "API Gateway", "Security Auditing"] }
+                    { id: "02", title: "Web Platforms", icon: "globe", desc: "High-fidelity web interfaces that balance technical depth with UX.", longDesc: "Our web platforms are built for speed and accessibility using edge computing and SSR.", features: ["Next.js", "Edge Computing", "WebGL", "WebAssembly"] },
+                    { id: "03", title: "System Architecture", icon: "layers", desc: "Architectural blueprints for complex multi-tier software systems.", longDesc: "Before writing a single line of code, we design the blueprint to handle future scale.", features: ["System Design", "Database Modeling", "API Gateway", "Security Auditing"] },
+                    { id: "04", title: "Mobile Ecosystems", icon: "smartphone", desc: "Native and cross-platform mobile experiences with zero-latency logic.", longDesc: "We build mobile applications that feel native, fast, and intuitive by optimizing rendering pipelines.", features: ["React Native", "Swift", "Offline-First", "Automated Delivery"] },
+                    { id: "05", title: "Cloud Infrastructure", icon: "cpu", desc: "Scalable, secure, and resilient cloud architecture for global deployments.", longDesc: "Our cloud engineering team designs infrastructure that scales elastically across AWS, Google Cloud, and Azure.", features: ["Terraform", "Kubernetes", "Multi-Region", "Zero-Trust Security"] },
+                    { id: "06", title: "AI Integration", icon: "zap", desc: "Leveraging neural networks to automate complex logical workflows.", longDesc: "We integrate state-of-the-art machine learning models into your existing workflows.", features: ["LLM Orchestration", "Computer Vision", "Predictive Modeling"] },
                 ],
                 selectedProject: null,
                 projects: [
@@ -494,15 +494,18 @@
                                         toggleActions: "play none none none"
                                     },
                                     opacity: 100,
+                                    y: 40,
                                     scale: 0.95,
-                                    y: 30,
                                     duration: 1,
-                                    stagger: 0.1,
-                                    ease: "expo.out"
+                                    stagger: 0.15,
+                                    ease: "power3.out"
                                 });
                             }
                         });
-                    }, 100);
+                        
+                        // Force ScrollTrigger refresh after a short delay
+                        setTimeout(() => ScrollTrigger.refresh(), 500);
+                    }, 500);
                 }
             }
         }
