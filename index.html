@@ -466,7 +466,6 @@
                     gsap.to(".animate-typing-trigger", {
                         width: "100%",
                         duration: 2,
-                        steps: 40,
                         ease: "steps(40)",
                         delay: 1.5
                     });
@@ -482,20 +481,28 @@
 
                     // Scroll Animations
                     gsap.registerPlugin(ScrollTrigger);
-                    gsap.utils.toArray('section').forEach(section => {
-                        gsap.from(section.querySelectorAll('.glass-premium'), {
-                            scrollTrigger: {
-                                trigger: section,
-                                start: "top 80%",
-                            },
-                            opacity: 0,
-                            scale: 0.95,
-                            y: 30,
-                            duration: 1,
-                            stagger: 0.1,
-                            ease: "expo.out"
+                    
+                    // Use a small timeout to ensure Alpine has finished all DOM mutations
+                    setTimeout(() => {
+                        gsap.utils.toArray('section').forEach(section => {
+                            const cards = section.querySelectorAll('.glass-premium');
+                            if (cards.length > 0) {
+                                gsap.from(cards, {
+                                    scrollTrigger: {
+                                        trigger: section,
+                                        start: "top 85%",
+                                        toggleActions: "play none none none"
+                                    },
+                                    opacity: 0,
+                                    scale: 0.95,
+                                    y: 30,
+                                    duration: 1,
+                                    stagger: 0.1,
+                                    ease: "expo.out"
+                                });
+                            }
                         });
-                    });
+                    }, 100);
                 }
             }
         }
